@@ -17,25 +17,25 @@ module.exports = (env) => {
     output: {
       filename: '[name].[contenthash].js',
       chunkFilename: '[name].bundle.js',
-      publicPath:
-        process.env.MODE === 'development'
-          ? '/'
-          : path.join(__dirname, 'build'),
+      publicPath: '/',
       path: path.resolve(__dirname, 'build'),
     },
     devtool: 'inline-source-map',
-    devServer: process.env.MODE === 'development'?{
-      https: false,
-      host: 'localhost',
-      compress: true,
-      hot: true,
-      port: 3000,
-      open: true,
-      client: {
-        progress: true,
-      },
-      historyApiFallback: true,
-    }:undefined,
+    devServer:
+      process.env.MODE === 'development'
+        ? {
+            https: false,
+            host: 'localhost',
+            compress: true,
+            hot: true,
+            port: 3000,
+            open: true,
+            client: {
+              progress: true,
+            },
+            historyApiFallback: true,
+          }
+        : undefined,
     module: {
       rules: [
         {
